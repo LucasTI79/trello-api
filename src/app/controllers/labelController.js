@@ -5,11 +5,10 @@ require('dotenv').config()
 
 const router = express.Router();
 
-//all lists in board
 router.get('/', async(req,res) => {
   try {
     const idBoard = '609092d559a90c62d379eb1c'
-    const response = axios.get(`${API_URL}/1/boards/${idBoard}/lists`)
+    const response = axios.get(`${API_URL}/1/boards/${idBoard}/labels`)
     res.status(200).json(response.data)
   } catch (error) {
     console.log('error',error)
@@ -17,18 +16,23 @@ router.get('/', async(req,res) => {
   }
 })
 
-//create board
+//create label
 router.post('/', async (req,res) => {
   try{
-    const { name } = req.params
-    await axios.post(`https://api.trello.com/1/boards`, null, { params: {
-      name
-    } })
-    res.status(201)
+    const { name, color } = req.query
+    const idBoard = '609092d559a90c62d379eb1c'
+    await axios.post(`${API_URL}/1/labels`, null , {
+      params : {
+        name,
+        color,
+        idBoard
+      }
+    })
+    res.status(201).send()
   }catch(err){
     console.log('err',err)
     res.status(400).send()
   }
 })
 
-module.exports = app => app.use('/boards', router)
+module.exports = app => app.use('/labels', router)

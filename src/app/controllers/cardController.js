@@ -9,6 +9,7 @@ router.get('/', (req,res) => {
   res.status(400).json({ error : 'invalid listID' })
 })
 
+//all cards
 router.get('/:listID', async (req,res) => { 
   try{
     const { listID } = req.params
@@ -21,6 +22,7 @@ router.get('/:listID', async (req,res) => {
   }
 })
 
+//create card
 router.post('/', async (req,res) => {
   try{
     const { idList } = req.query
@@ -33,7 +35,7 @@ router.post('/', async (req,res) => {
     })
     res.status(response.status).send()
   }catch(err){
-    // console.log('err',err)
+    console.log('err',err)
     res.status(400).send()
   }
 })
