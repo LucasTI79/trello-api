@@ -6,6 +6,7 @@ require('dotenv').config()
 
 const router = express.Router();
 
+//get checkitems
 router.get('/', async(req,res) => {
   try {
     const { idChecklist } = req.route;
@@ -17,11 +18,12 @@ router.get('/', async(req,res) => {
   }
 })
 
+//create checkitems
 router.post('/:idChecklist', async(req,res) => {
   try {
     const { idChecklist } = req.route;
     const { name, pos, checked } = req.params
-    await axios.post(`${API_URL}/1/checklists/${idChecklist}/checklists`, null , { params: {
+    await axios.post(`${API_URL}/1/checklists/${idChecklist}/checkitems`, null , { params: {
       name,
       pos,
       checked
