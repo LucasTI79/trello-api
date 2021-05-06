@@ -9,8 +9,8 @@
 ###EXTRAS
 
 [] - Máscara e validação dos campos
-[] - Limpar os campos preenchidos após envio
-[] - Layout responsivo
+[x] - Limpar os campos preenchidos após envio
+[x] - Layout responsivo
 
 idBoard - 609092d559a90c62d379eb1c
 idList  - 6090a2dcb5b1542378c7c707
