@@ -18,7 +18,7 @@ router.post('/', async(req,res) => {
   try {
     const idCard = '6090a41a4e265d49bf00bac1'
     const { name } = req.body
-    await axios.post(`${API_URL}/1/cards/${idCard}/checklists`, { name })
+    await API_URL.post(`1/cards/${idCard}/checklists`, { name })
     res.status(201).send()
   } catch (err){
     console.log(err)

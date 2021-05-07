@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', async(req,res) => {
   try {
     const idBoard = '609092d559a90c62d379eb1c'
-    const response = axios.get(`${API_URL}/1/boards/${idBoard}/labels`)
+    const response = API_URL.get(`1/boards/${idBoard}/labels`)
     res.status(200).json(response.data)
   } catch (error) {
     console.log('error',error)
@@ -21,7 +21,7 @@ router.post('/', async (req,res) => {
   try{
     const { name, color } = req.query
     const idBoard = '609092d559a90c62d379eb1c'
-    await axios.post(`${API_URL}/1/labels`, null , {
+    await API_URL.post(`1/labels`, null , {
       params : {
         name,
         color,
@@ -34,5 +34,25 @@ router.post('/', async (req,res) => {
     res.status(400).send()
   }
 })
+
+
+
+//add label to card
+router.post('/add/:idCard', async (req,res) => {
+  try{
+    const { value } = req.query
+    const { idCard } = req.route
+    await API_URL.post(`/1/cards/${idCard}/idLabels`, null , {
+      params : {
+        value
+      }
+    })
+    res.status(201).send()
+  }catch(err){
+    console.log('err',err)
+    res.status(400).send()
+  }
+})
+
 
 module.exports = app => app.use('/labels', router)

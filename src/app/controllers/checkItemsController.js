@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/', async(req,res) => {
   try {
     const { idChecklist } = req.route;
-    const response = await axios.post(`${API_URL}/1/checklists/${idChecklist}/checklists`)
+    const response = await API_URL.post(`1/checklists/${idChecklist}/checklists`)
     res.status(200).json(response.data)
   } catch (err){
     console.log(err)
@@ -23,7 +23,7 @@ router.post('/:idChecklist', async(req,res) => {
   try {
     const { idChecklist } = req.route;
     const { name, pos, checked } = req.params
-    await axios.post(`${API_URL}/1/checklists/${idChecklist}/checkitems`, null , { params: {
+    await API_URL.post(`1/checklists/${idChecklist}/checkitems`, null , { params: {
       name,
       pos,
       checked

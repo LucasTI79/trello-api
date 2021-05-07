@@ -12,18 +12,6 @@ app.use(cors({
 
 const PORT = process.env.PORT || 3333
 
-axios.interceptors.request.use(async config => {
-
-  if(config.params && config.params.keys && config.params.token)return config
-
-  config.params = {
-    ...config.params,
-    key: process.env.API_KEY,
-    token: process.env.TOKEN
-  }
-  return config
-})
-
 require('./app/controllers/index')(app)
 
 app.get('/', (req,res) => {

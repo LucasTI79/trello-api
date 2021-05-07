@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', async(req,res) => {
   try {
     const idBoard = '609092d559a90c62d379eb1c'
-    const response = axios.get(`${API_URL}/1/boards/${idBoard}/lists`)
+    const response = API_URL.get(`1/boards/${idBoard}/lists`)
     res.status(200).json(response.data)
   } catch (error) {
     console.log('error',error)
@@ -21,7 +21,7 @@ router.get('/', async(req,res) => {
 router.post('/', async (req,res) => {
   try{
     const { name } = req.params
-    await axios.post(`https://api.trello.com/1/boards`, null, { params: {
+    await API_URL.post(`1/boards`, null, { params: {
       name
     } })
     res.status(201)
