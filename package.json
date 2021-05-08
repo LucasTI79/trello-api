@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
+    "start":"node src/inde.js",
     "dev": "nodemon src"
   },
   "dependencies": {
