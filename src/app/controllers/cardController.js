@@ -27,9 +27,9 @@ router.post('/', async (req,res) => {
   try{
     // const { idList } = req.query
     const idList = '6090a2dcb5b1542378c7c707'
-    const { name, desc, pos, due, dueComplete } = req.body
-    const data = { name, desc, pos, due, dueComplete }
-    const response = await API_URL.post(`/1/cards`, data, {
+    const { name, desc } = req.body
+    const data = { name, desc }
+    const response = await API_URL.post(`/1/cards`, {...data, pos:'top'}, {
       params : {
         idList
       }

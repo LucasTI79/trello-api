@@ -8,8 +8,7 @@ const router = express.Router();
 //create checklist
 router.post('/', async(req,res) => {
   try {
-    const idCard = '6090a41a4e265d49bf00bac1'
-    const { name, pos } = req.body
+    const { idCard, name, pos } = req.body
     await API_URL.post(`1/cards/${idCard}/checklists`, { name, pos })
     res.status(201).send()
   } catch (err){
