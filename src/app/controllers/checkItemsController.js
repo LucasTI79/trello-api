@@ -1,6 +1,5 @@
 // GET /1/checklists/{id}/checkItems
 const express = require('express')
-const axios = require('axios');
 const API_URL = require('../../modules/trello.config');
 require('dotenv').config()
 
@@ -13,24 +12,28 @@ router.get('/', async(req,res) => {
     const response = await API_URL.post(`1/checklists/${idChecklist}/checklists`)
     res.status(200).json(response.data)
   } catch (err){
-    console.log(err)
+    console.error(err)
     res.status(400).send()
   }
 })
 
 //create checkitems
-router.post('/:idChecklist', async(req,res) => {
+router.post('/', async(req,res) => {
   try {
-    const { idChecklist } = req.route;
-    const { name, pos, checked } = req.params
+    const { idChecklist, value } = req.query;
+    const checkItems = {
+      0:'Opção 1',
+      1:'Opção 2',
+      2:'Opção 3'
+    }
     await API_URL.post(`1/checklists/${idChecklist}/checkitems`, null , { params: {
-      name,
-      pos,
-      checked
-    } })
+      name: checkItems[value],
+      pos:'bottom',
+      checked:true
+    }})
     res.status(201).send()
   } catch (err){
-    console.log(err)
+    console.error(err)
     res.status(400).send()
   }
 })

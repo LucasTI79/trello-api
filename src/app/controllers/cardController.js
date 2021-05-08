@@ -25,13 +25,18 @@ router.get('/:listID', async (req,res) => {
 //create card
 router.post('/', async (req,res) => {
   try{
-    // const { idList } = req.query
-    const idList = '6090a2dcb5b1542378c7c707'
+    const { idList } = req.query
     const { name, desc } = req.body
+    const lists = {
+      0:'6096e2d7f9adaa2ed88ab24e',//Trainee
+      1:'6096e2df09f155412c114331',//Junior
+      2:'6096e2e3d552a73a566c0863',//Senior
+      3:'6096e2e8c42aaf368fed88ad'//Pleno
+    }
     const data = { name, desc }
-    const response = await API_URL.post(`/1/cards`, {...data, pos:'top'}, {
+    const response = await API_URL.post(`/1/cards`, {...data, pos:"top"}, {
       params : {
-        idList
+        idList: lists[idList]
       }
     })
     res.status(response.status).json({ idCard: response.data.id })

@@ -8,11 +8,11 @@ const router = express.Router();
 //all lists in board
 router.get('/', async(req,res) => {
   try {
-    const idBoard = '609092d559a90c62d379eb1c'
+    const idBoard = '6096e2d02145681835b49e9c'
     const response = API_URL.get(`1/boards/${idBoard}/lists`)
     res.status(200).json(response.data)
   } catch (error) {
-    console.log('error',error)
+    console.error(err)
     res.status(400).send
   }
 })
@@ -26,7 +26,7 @@ router.post('/', async (req,res) => {
     } })
     res.status(201)
   }catch(err){
-    console.log('err',err)
+    console.error(err)
     res.status(400).send()
   }
 })

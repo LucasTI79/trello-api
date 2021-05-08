@@ -7,11 +7,11 @@ const router = express.Router();
 
 router.get('/', async(req,res) => {
   try {
-    const idBoard = '609092d559a90c62d379eb1c'
+    const idBoard = process.env.ID_BOARD
     const response = await API_URL.get(`1/boards/${idBoard}/labels`)
     res.status(200).json(response.data)
   } catch (error) {
-    console.log('error',error)
+    console.error(err)
     res.status(400).send
   }
 })
@@ -20,7 +20,7 @@ router.get('/', async(req,res) => {
 router.post('/', async (req,res) => {
   try{
     const { name, color } = req.query
-    const idBoard = '609092d559a90c62d379eb1c'
+    const idBoard = process.env.ID_BOARD
     await API_URL.post(`1/labels`, null , {
       params : {
         name,
@@ -30,7 +30,7 @@ router.post('/', async (req,res) => {
     })
     res.status(201).send()
   }catch(err){
-    console.log('err',err)
+    console.error(err)
     res.status(400).send()
   }
 })

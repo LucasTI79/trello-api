@@ -11,7 +11,7 @@ router.get('/:idList/cards', async (req,res) => {
     const response = await API_URL.get(`1/lists/${idList}/cards`)
     res.status(200).json(response.data)
   }catch(err){
-    console.log('err',err)
+    console.error(err)
     res.status(400).send()
   }
 })
@@ -20,13 +20,13 @@ router.get('/:idList/cards', async (req,res) => {
 router.post('/', async (req,res) => {
   try{
     const { name } = req.body
-    const idBoard = '6090a2dcb5b1542378c7c707'
+    const idBoard = process.env.ID_BOARD
     const response = await API_URL.post(`1/boards`, { name }, { params: {
       idBoard
     } })
     res.status(201).json({ idList: response.data.id })
   }catch(err){
-    console.log('err',err)
+    console.error(err)
     res.status(400).send()
   }
 })
